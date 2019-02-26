@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from '@angular/common/http'
 import { Carro } from '../modelos/Carro';
 
 @Component({
@@ -7,25 +8,16 @@ import { Carro } from '../modelos/Carro';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-  public carro: Carro[];
+  public carros: Carro[];
+
+  constructor(public http:HttpClient){}
 
   ngOnInit(): void {
-    this.carro = [
-      {
-        nome: "Fusca",
-        preco: 1000
-      },{
-        nome: "Ferrari",
-        preco: 2000
-      },{
-        nome: "teste",
-        preco: 2000
-      },{
-        nome: "Gol",
-        preco: 2000
-      },{
-        nome: "Astra",
-        preco: 3000
-      }]
+    this.http.get<Carro[]>('http://localhost:8080/api/carro/listaTodos')  
+    .subscribe(
+      (carros)=>{
+        this.carros = carros;
+      }
+    )
   }
 }
