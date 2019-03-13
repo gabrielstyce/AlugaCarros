@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http'
+import { HttpErrorResponse} from '@angular/common/http'
 import { Carro } from '../modelos/Carro';
 import { LoadingController, AlertController } from '@ionic/angular';
+import { CarrosService } from '../providers/carros.service';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,9 @@ import { LoadingController, AlertController } from '@ionic/angular';
 export class HomePage implements OnInit{
   public carros: Carro[];
 
-  constructor(public http: HttpClient, 
-              private loadingCt: LoadingController,
-              private alertCt: AlertController) {
+  constructor(private loadingCt: LoadingController,
+              private alertCt: AlertController,
+              private carrosService: CarrosService) {
 
               }
 
@@ -24,8 +25,7 @@ export class HomePage implements OnInit{
       });
       await loading.present();
 
-    this.http.get<Carro[]>('http://localhost:8080/api/carro/listaTodos')
-    .subscribe(
+      this.carrosService.lista().subscribe(
       (carros) => {
         this.carros = carros;
       },
