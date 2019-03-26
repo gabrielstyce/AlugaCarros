@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse} from '@angular/common/http'
+import { HttpErrorResponse} from '@angular/common/http';
 import { Carro } from '../modelos/Carro';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { CarrosService } from '../providers/carros.service';
 
 @Component({
@@ -14,9 +14,8 @@ export class HomePage implements OnInit{
 
   constructor(private loadingCt: LoadingController,
               private alertCt: AlertController,
-              private carrosService: CarrosService) {
-
-              }
+              private carrosService: CarrosService,
+              private navCtrl: NavController) { }
 
   async ngOnInit() {
     const loading = await this.loadingCt.create(
@@ -25,8 +24,7 @@ export class HomePage implements OnInit{
       });
       await loading.present();
 
-      this.carrosService.lista().subscribe(
-      (carros) => {
+      this.carrosService.lista().subscribe((carros) => {
         this.carros = carros;
       },
       async (err: HttpErrorResponse) => {
@@ -45,4 +43,10 @@ export class HomePage implements OnInit{
         }
       );
   }
+
+  selecionaCarro(carro: Carro){
+    console.log(`Carro selecionado: ${carro.nome}`);
+    this.navCtrl.navigateForward('escolha');
+  }
+
 }
