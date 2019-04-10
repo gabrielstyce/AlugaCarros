@@ -3,6 +3,7 @@ import { HttpErrorResponse} from '@angular/common/http';
 import { Carro } from '../modelos/Carro';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { CarrosService } from '../providers/carros.service';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -46,7 +47,12 @@ export class HomePage implements OnInit{
 
   selecionaCarro(carro: Carro){
     console.log(`Carro selecionado: ${carro.nome}`);
-    this.navCtrl.navigateForward('escolha');
+    let extras: NavigationExtras = {
+      queryParams: {
+        carroSelecionado: JSON.stringify(carro)
+      }
+    }
+    this.navCtrl.navigateForward(['escolha'], extras)
   }
 
 }
