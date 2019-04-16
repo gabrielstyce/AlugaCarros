@@ -16,7 +16,8 @@
 
 <ion-item-group>
   <ion-item-divider color='warning'>
-    Veículo
+    <ion-icon name="logo-model-s"></ion-icon>
+      Veículo
   </ion-item-divider>
   <ion-item> {{carro.nome}} </ion-item>
   <ion-item>R$ {{carro.preco}} </ion-item>
@@ -24,20 +25,20 @@
 
 <ion-item-group>
   <ion-item-divider color = 'primary'>
-<ion-icon name = 'option'></ion-icon>
-Acessórios
+  <ion-icon name="options"></ion-icon>
+      Acessórios
   </ion-item-divider>
-  <ion-item *ngFor = 'let escolha of acessorios'>
+  <ion-item *ngFor = 'let acessorio of acessorios'>
     <ion-label>
-      <h2>{{escolha.acessorio}}</h2> 
-      <h4>R$ {{escolha.preco}}</h4>
+      <h2>{{acessorio.acessorio}}</h2>
+      <h4>R$ {{acessorio.preco}}</h4>
     </ion-label> 
-    <ion-toggle></ion-toggle>
+    <ion-toggle #pepperoni (ionChange)="valorTotal(pepperoni.checked, acessorio)"></ion-toggle>
   </ion-item>
 </ion-item-group>
 
   <ion-item-divider color = 'danger'>
-    Total: R$ 1000
+    Total: {{valorTotalCarro}}
   </ion-item-divider>
 
 
