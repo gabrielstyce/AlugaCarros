@@ -33,7 +33,7 @@
       <h2>{{acessorio.acessorio}}</h2>
       <h4>R$ {{acessorio.preco}}</h4>
     </ion-label> 
-    <ion-toggle #atualizarTotal (ionChange)="valorTotal(atualizarTotal.checked, acessorio)"></ion-toggle>
+    <ion-toggle #togglestate (ionChange)="valorTotal(togglestate.checked, acessorio)"></ion-toggle>
   </ion-item>
 </ion-item-group>
 
