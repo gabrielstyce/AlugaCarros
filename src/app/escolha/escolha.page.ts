@@ -10,17 +10,14 @@ import { Acessorio } from '../modelos/Acessorio';
   styleUrls: ['./escolha.page.scss'],
 })
 export class EscolhaPage implements OnInit {
-  
+
   private carro: Carro
   private acessorios: Acessorio []
   private valorTotalCarro: number
 
-  
-
   constructor(private navCtrl: NavController,
               private activateRouter: ActivatedRoute) { }
 
-  
   ngOnInit() {
     this.activateRouter.queryParams.subscribe(
       params => {
@@ -30,9 +27,9 @@ export class EscolhaPage implements OnInit {
     });
 
 
-    this.acessorios = [{acessorio: 'Freio ABS', preco: 800},
-                      {acessorio: 'Ar-Condicionado', preco: 1000},
-                      {acessorio: 'MP3 Player', preco: 500}];
+    this.acessorios = [{acessorio: 'Freio ABS',       preco: 800},
+                       {acessorio: 'Ar-Condicionado', preco: 1000},
+                       {acessorio: 'MP3 Player',      preco: 500}];
 
     this.valorTotalCarro = this.carro.preco;
   }
