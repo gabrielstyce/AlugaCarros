@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { Carro } from '../modelos/Carro';
 import { Acessorio } from '../modelos/Acessorio';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-escolha',
@@ -37,7 +38,14 @@ export class EscolhaPage implements OnInit {
   valorTotal(ativo: boolean, acessorio: Acessorio) {
     ativo ? this.valorTotalCarro += acessorio.preco : this.valorTotalCarro -= acessorio.preco;
   }
-  voltar() {
-    this.navCtrl.back();
+
+  avancaCadastro(carro: Carro) {
+    let extras: NavigationExtras = {
+      queryParams: {
+        carroSelecionado: JSON.stringify(carro),
+        precoTotal: this.valorTotalCarro
+      }
+    }
+    this.navCtrl.navigateForward(['cadastro'], extras);
   }
 }
