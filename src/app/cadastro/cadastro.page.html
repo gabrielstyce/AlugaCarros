@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h2> {{carro.nome}} </h2>
+  <p> {{precoTotal}} </p>
+
+  <form action="">
+    <ion-item>
+      <ion-label position='stacked'>Nome:</ion-label>
+      <ion-input name='nome'></ion-input>
+    </ion-item>
+
+    
+    <ion-item>
+      <ion-label position='stacked'>Endereço:</ion-label>
+      <ion-input name='endereco'></ion-input>
+    </ion-item>
+            
+
+    <ion-item>
+      <ion-label position='stacked'>E-Mail:</ion-label>
+      <ion-input name='email'></ion-input>
+    </ion-item>
+            
+
+    <ion-item>
+      <ion-label position='stacked'>Data:</ion-label>
+      <ion-input name='data' dataFormat='DD/MM/YY'></ion-input>
+    </ion-item>
+  </form>
+
+  <ion-fab vertical='bottom' horizontal='end' slot='fixed'>
+    <ion-fab-button>
+      <ion-icon name='send'></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
